@@ -6,17 +6,18 @@ def get_max_salary(path: str) -> int:
     jobs = read(path)
     max_salarys = []
     for job in jobs:
-        if job['max_salary'] not in max_salarys and job['max_salary'] != "":
+        # if len(job['max_salary']) != 0:
+        if job['max_salary'].isdigit():
             max_salarys.append(int(job['max_salary']))
 
-    return min(max_salarys)
+    return max(max_salarys)
 
 
 def get_min_salary(path: str) -> int:
     jobs = read(path)
     min_salarys = []
     for job in jobs:
-        if job['min_salary'] not in min_salarys and job['min_salary'] != "":
+        if job['min_salary'].isdigit():
             min_salarys.append(int(job['min_salary']))
 
     return min(min_salarys)
