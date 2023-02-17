@@ -1,5 +1,5 @@
 from typing import Union, List, Dict
-from jobs import read
+from src.insights.jobs import read
 
 
 def get_max_salary(path: str) -> int:
@@ -37,18 +37,11 @@ def filter_by_salary_range(
     jobs: List[dict],
     salary: Union[str, int]
 ) -> List[Dict]:
-    """Filters a list of jobs by salary range
+    valid_jobs = matches_salary_range(jobs, salary)
+    filtered_jobs = []
+    if valid_jobs:
+        for job in jobs:
+            if job["min_salary"] < salary < job["max_salary"]:
+                filtered_jobs.append(job)
 
-    Parameters
-    ----------
-    jobs : list
-        The jobs to be filtered
-    salary : int
-        The salary to be used as filter
-
-    Returns
-    -------
-    list
-        Jobs whose salary range contains `salary`
-    """
-    raise NotImplementedError
+    return filtered_jobs
